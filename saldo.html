@@ -1,90 +1,90 @@
-<!DOCTYPE html>
+* DOTIPE html.
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificar Saldo!</title>
-    <style>
-        body {
-            background-color: #333;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
-        }
+<cabeça>
+    <meta Carga="UTF-8">
+    <meta nome="viewport" conteúdo="largura = largura do dispositivo, escala inicial=1.0">
+    <título>Verificar Saldo!</título>
+    <estilo>
+               corpo               
+              cor de fundo: #333;              
+ cor: #fff; 
+                            família de fontes:                  
+                          acolchoamento:  20Px;              
+                            dimensionamento de caixa:                  
+                            alinhamento de texto:                  
+                      }              
 
-        h2, p, label, input, button {
-            display: block;
-            margin: 10px auto;
-        }
+                 h2, p, etiqueta, entrada, botão                 
+ Display:  bloco; 
+ margem:  10Px auto; 
+                      }              
 
-        h2 {
-            margin-bottom: 20px;
-            font-weight: 900;
-            color: #3498db;
-        }
+ h2 
+                          margem-fundo:  20Px;              
+ peso-fonte:  900; 
+ cor: #3498db; 
+                      }              
 
-        h3 {
-            margin-bottom: 20px;
-            font-weight: 900;
-            color: #7aff00;
-        }
+ h3 
+                          margem-fundo:  20Px;              
+ peso-fonte:  900; 
+ cor: #7aff00; 
+                       }               
 
-        p {
-            font-size: 18px;
-            color: #fff;
-        }
+ P 
+                              Tamanho da fonte:  18                  
+ cor: #fff; 
+                       }               
 
-        label {
-            font-weight: bold;
-            color: #ff0000;
-        }
+                  etiqueta  {                
+                peso-fonte:    ousado;                
+ cor: #ff0000; 
+                       }               
 
-        button, a {
-            padding: 10px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
+                 botão, a {               
+                            acolchoamento:  10Px;                
+                               cor de fundo: #4CAF50;                   
+ cor: #fff; 
+                               fronteira:  Nenhum;                   
+                               cursor:  ponteiro;                   
+                          }                  
 
-        button:hover {
-            background-color: #45a049;
-        }
+                    botão: paira {                  
+ cor de fundo: #45a049; 
+                          }                  
 
-        input {
-            width: calc(50% - 5px);
-            padding: 8px;
-            box-sizing: border-box;
-            color: #000; /* Adicionado para números em preto */
-        }
+                   Entrada {                   
+ largura: calc (50% - 5px) 
+                   enchimento: 8px;                   
+                   dimensionamento de caixa: caixa de fronteira;                   
+                               color: #000; /* Adicionado para números em preto */                   
+                          }                  
 
-        select {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-    </style>
-</head>
-<body>
+ Seleccione { 
+                  largura: 100%;                  
+                  enchimento: 8px;                  
+                  dimensionamento de caixa: caixa de fronteira;                  
+                          }                  
+    </estilo>
+</cabeça>
+<corpo>
 
-    <h2>Calcular Saldo</h2>
+    <h2>Cálculo de saldo</h2>
 
-    <label for="pesoMenor">Peso Menor:</label>
-    <input type="number" id="pesoMenor" step="0.01" placeholder="Informe o Peso Menor">
+    <               etiqueta                 para="pesoMenor">Peso menor:</etiqueta>
+    <Entrada Tipo="número" id="pesoMenor" passo="0.01" Lugar De espaço="Informe o Peso Menor">
 
-    <label for="freteCombinado">Frete Combinado(Tar):</label>
-    <input type="number" id="freteCombinado" step="0.01" placeholder="Informe o Frete Combinado(Tar)">
+    <           etiqueta             para="freteCombinado">Frete combinado (alcatrão):</etiqueta>
+    <Entrada Tipo="número" id="freteCombinado" passo="0.01" Lugar De espaço="Informe o Frete Combinado(Tar)">
 
-    <button onclick="calcularResultado()">Calcular</button>
+    <   botão     onclick="cálculo Resultado()">Calcular</botão>
 
-    <p>Resultado: <span id="resultado"></span></p>
+    <P>Resultado: <span id="resultado"></span></P>
 
     <h3>Insirir Descontos:</h3>
 
     <label for="manual1"></label>
-    <input type="text" id="manual1" placeholder="Cliqie aqui Jovem" oninput="calcularResultado()">
+    <input type="text" id="manual1" placeholder="Clique aqui Jovem" oninput="calcularResultado()">
 
     <label for="manual2"></label>
     <input type="text" id="manual2" placeholder="Clique aqui Jovem" oninput="calcularResultado()">
