@@ -32,7 +32,7 @@
 
         label {
             font-weight: bold;
-            color: #ff0000;
+            color: #65ff00;
         }
 
         button {
@@ -42,7 +42,7 @@
             border: none;
             cursor: pointer;
         }
-
+        
         button:hover {
             background-color: #45a049;
         }
@@ -121,66 +121,142 @@
 
     <br>
 
-    <h2>Calcular Saldo da Carta Frete</h2>
+    <h2>Calcular Saldo</h2>
 
-    <form id="calculadoraForm">
-        <label for="peso">Peso Menor (COM PONTO):</label>
-        <input type="text" id="peso" placeholder="Clique Aqui Jovem :)">
+<label for="pesoMenor">Peso Menor:</label>
+<input type="number" id="pesoMenor" step="0.01" placeholder="Informe o Peso Menor">
 
-        <label for="valorFrete">Valor do Frete Combinado:</label>
-        <input type="text" id="valorFrete" placeholder="Clique Aqui Jovem :)">
+<label for="freteCombinado">Frete Combinado(Tar):</label>
+<input type="number" id="freteCombinado" step="0.01" placeholder="Informe o Frete Combinado(Tar)">
 
-        <label for="adiantamento">Adiantamento:</label>
-        <input type="text" id="adiantamento" placeholder="Clique Aqui Jovem :)">
+<button onclick="calcularSaldo()">Calcular</button>
 
-        <label for="descontoMotorista">Desconto de Motorista:</label>
-        <input type="text" id="descontoMotorista" placeholder="Clique Aqui Jovem :)">
+<p>Resultado: <span id="resultadoSaldo"></span></p>
 
-        <label for="riscoVida">Risco de Vida:</label>
-        <input type="text" id="riscoVida" placeholder="Clique Aqui Jovem :)">
+    <h3>Insirir Descontos:</h3>
 
-        <label for="descontoQuebra">Desconto de Quebra:</label>
-        <input type="text" id="descontoQuebra" placeholder="Clique Aqui Jovem :)">
+    <label for="manual1">Desconto da quebra em R$</label>
+<input type="text" id="manual1" placeholder="Cliqie aqui Jovem" readonly>
 
-        <button type="button" onclick="calcularSaldo()">Calcular Saldo</button>
+<br>
+<br>
+    <label for="manual2">Valores restantes a serem Descontados:</label>
+    <input type="text" id="manual2" placeholder="Clique aqui Jovem" oninput="calcularResultado()">
 
-        <p id="resultadoSaldo"></p>
-    </form>
+    <label for="manual3"></label>
+    <input type="text" id="manual3" placeholder="Clique aqui Jovem" oninput="calcularResultado()">
+
+    <label for="manual4"></label>
+    <input type="text" id="manual4" placeholder="Clique aqui Jovem" oninput="calcularResultado()">
+
+    <label for="manual5"></label>
+    <input type="text" id="manual5" placeholder="Clique aqui Jovem" oninput="calcularResultado()">
+
+    <label for="manual6"></label>
+    <input type="text" id="manual6" placeholder="Clique aqui Jovem" oninput="calcularResultado()">
+
+    <label for="manual7"></label>
+    <input type="text" id="manual7" placeholder="Clique aqui Jovem" oninput="calcularResultado()">
 
     <script>
         function formatarNumero(numero) {
-            return numero.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        }
+        return numero.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&.').replace('.', ',');
+    }
 
-        function substituirVirgulaPorPonto(valor) {
-            return valor.replace(',', '.');
-        }
+    function calcularResultado() {
+    // Obter os valores dos inputs
+    const manual1 = parseFloat(document.getElementById('manual1').value.replace(/\./g, '').replace(',', '.')) || 0;
+    const manual2 = parseFloat(document.getElementById('manual2').value.replace(/\./g, '').replace(',', '.')) || 0;
+    const manual3 = parseFloat(document.getElementById('manual3').value.replace(/\./g, '').replace(',', '.')) || 0;
+    const manual4 = parseFloat(document.getElementById('manual4').value.replace(/\./g, '').replace(',', '.')) || 0;
+    const manual5 = parseFloat(document.getElementById('manual5').value.replace(/\./g, '').replace(',', '.')) || 0;
+    const manual6 = parseFloat(document.getElementById('manual6').value.replace(/\./g, '').replace(',', '.')) || 0;
+    const manual7 = parseFloat(document.getElementById('manual7').value.replace(/\./g, '').replace(',', '.')) || 0;
 
-        function calcularSaldo() {
-            const peso = parseFloat(substituirVirgulaPorPonto(document.getElementById('peso').value)) || 0;
-            const valorFrete = parseFloat(substituirVirgulaPorPonto(document.getElementById('valorFrete').value)) || 0;
-            const adiantamento = parseFloat(substituirVirgulaPorPonto(document.getElementById('adiantamento').value)) || 0;
-            const descontoMotorista = parseFloat(substituirVirgulaPorPonto(document.getElementById('descontoMotorista').value)) || 0;
-            const descontoQuebra = parseFloat(substituirVirgulaPorPonto(document.getElementById('descontoQuebra').value)) || 0;
-            const riscoVida = parseFloat(substituirVirgulaPorPonto(document.getElementById('riscoVida').value)) || 0;
+    // Calcular o resultado somando os valores dos inputs
+    const resultado = manual1 + manual2 + manual3 + manual4 + manual5 + manual6 + manual7;
 
-            const saldo = peso * valorFrete - adiantamento - descontoMotorista - descontoQuebra - riscoVida;
-            const saldoFormatado = formatarNumero(saldo);
-            document.getElementById('resultadoSaldo').textContent = `Saldo Final: R$ ${saldoFormatado}`;
-        }
+    // Exibir o resultado onde desejar
+    console.log('Resultado:', resultado);
+    // Se você quiser exibir o resultado em algum lugar específico na página, substitua o console.log pelo código correspondente.
+    atualizarResultadoSaldo(); // Adiciona essa chamada para atualizar o saldo ao calcular o resultado
+}
+
+function atualizarResultadoSaldo() {
+    const pesoMenor = parseFloat(document.getElementById('pesoMenor').value) || 0;
+    const freteCombinado = parseFloat(document.getElementById('freteCombinado').value) || 0;
+
+    const resultadoMultiplicacao = pesoMenor * freteCombinado;
+
+    const valoresManuais = Array.from({ length: 7 }, (_, index) => {
+        const valorManual = parseFloat(document.getElementById(`manual${index + 1}`).value.replace(/\./g, '').replace(',', '.')) || 0;
+        return valorManual;
+    });
+
+    const resultadoFinal = resultadoMultiplicacao - valoresManuais.reduce((acc, val) => acc + val, 0);
+
+    document.getElementById('resultadoSaldo').innerText = formatarNumero(resultadoFinal);
+}
+
+// Adiciona eventos de input para cada campo manual
+for (let i = 1; i <= 7; i++) {
+    document.getElementById(`manual${i}`).addEventListener('input', () => {
+        calcularResultado(); // Recalcula o resultado ao inserir valores manuais
+    });
+}
+
+
+function calcularSaldo() {
+    const pesoMenor = parseFloat(document.getElementById('pesoMenor').value) || 0;
+    const freteCombinado = parseFloat(document.getElementById('freteCombinado').value) || 0;
+
+    const resultadoMultiplicacao = pesoMenor * freteCombinado;
+
+    const valoresManuais = Array.from({ length: 7 }, (_, index) => {
+        const valorManual = parseFloat(document.getElementById(`manual${index + 1}`).value.replace(/\./g, '').replace(',', '.')) || 0;
+        return valorManual;
+    });
+
+    const resultadoFinal = resultadoMultiplicacao - valoresManuais.reduce((acc, val) => acc + val, 0);
+
+    document.getElementById('resultadoSaldo').innerText = formatarNumero(resultadoFinal);
+}
+
+
 
         function calcularDivisao() {
-            var st1 = parseFloat(document.getElementById('st1').value);
-            var pb1 = parseFloat(document.getElementById('pb1').value);
+    // Obter valores dos campos
+    var valorMercadoria = parseFloat(document.getElementById('st1').value);
+    var pesoBruto = parseFloat(document.getElementById('pb1').value);
 
-            if (pb1 !== 0) {
-                var resultado1 = st1 / pb1;
-                var resultado1Formatado = resultado1.toFixed(2);
-                document.getElementById('resultado1').innerText = "O valor por kg é: " + resultado1Formatado;
-            } else {
-                document.getElementById('resultado1').innerText = "Impossível dividir por zero";
-            }
+    // Verificar se os valores são numéricos e não estão fora da faixa
+    if (!isNaN(valorMercadoria) && !isNaN(pesoBruto) && pesoBruto !== 0) {
+        // Calcular a divisão
+        var resultado = valorMercadoria / pesoBruto;
+
+        // Verificar se o resultado é um número válido
+        if (!isNaN(resultado) && isFinite(resultado)) {
+            // Exibir o resultado
+            document.getElementById('resultado1').innerText = 'Resultado: ' + formatarNumero(resultado);
+
+            // Imprimir o resultado no elemento "valorPorKg"
+            exibirResultadoValorPorKg(resultado);
+        } else {
+            // Exibir mensagem de erro se o resultado não for válido
+            document.getElementById('resultado1').innerText = 'Erro: Resultado inválido.';
         }
+    } else {
+        // Exibir mensagem de erro se os valores não forem válidos
+        document.getElementById('resultado1').innerText = 'Por favor, insira valores válidos.';
+    }
+}
+
+function exibirResultadoValorPorKg(resultado) {
+    // Coloque o resultado no elemento "valorPorKg"
+    document.getElementById('valorPorKg').value = resultado.toFixed(2);
+}
+
+
 
         function calcularPorcentagem() {
       const valorInput = document.getElementById('valor');
@@ -198,20 +274,26 @@
       }
     }
 
-        function calcularTotal() {
+    function calcularTotal() {
     var valorPorKg = parseFloat(document.getElementById("valorPorKg").value);
     var quebra = parseFloat(document.getElementById("quebra").value);
+    var manual1Element = document.getElementById("manual1");
 
-    var valorTotal = valorPorKg * quebra;
+    if (!isNaN(valorPorKg) && !isNaN(quebra)) {
+        var valorTotal = valorPorKg * quebra;
 
-    // Set the result in the "Desconto de Quebra" input field
-    document.getElementById("descontoQuebra").value = valorTotal.toFixed(2);
+        // Set the result in the "manual1" input field with comma
+        manual1Element.value = valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-    // Display the result if needed
-    // document.getElementById("resultadoTotal").innerText = "Valor total: " + valorTotal;
+        // Display the result in the "resultadoTotal" element
+        document.getElementById("resultadoTotal").innerText = "Valor a descontar do saldo: " + valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    } else {
+        // Handle the case where the entered values are not valid numbers
+        document.getElementById("resultadoTotal").innerText = "Por favor, insira valores válidos.";
+    }
 }
 
-        
+     
         function calcularPorcentagem() {
     const valorInput = document.getElementById('valor');
     const porcentagemSelect = document.getElementById('porcentagem');
@@ -242,72 +324,29 @@
 
 
         function subtrairValores() {
-            var valor1 = parseFloat(document.getElementById("valor1").value);
-            var valor2 = parseFloat(document.getElementById("valor2").value);
+        var valor1 = parseFloat(document.getElementById("valor1").value);
+        var valor2 = parseFloat(document.getElementById("valor2").value);
+
+        // Check if the entered values are valid numbers
+        if (!isNaN(valor1) && !isNaN(valor2)) {
             var resultado = valor1 - valor2;
-            document.getElementById("resultadoSubtracao").innerText = "Resultado: " + resultado;
-        }function subtrairValores() {
-    var valor1 = parseFloat(document.getElementById("valor1").value);
-    var valor2 = parseFloat(document.getElementById("valor2").value);
-    var resultado = valor1 - valor2;
-    document.getElementById("resultadoSubtracao").innerText = "Resultado: " + resultado;
 
-    // Set the result in the "quebra" input field
-    function realizarOperacao() {
-    try {
-        // Simulando uma operação que pode gerar "NaN"
-        let resultado = 10 / 0;  // Divisão por zero para simular um erro
+            // Set the result in the "quebra" input field
+            document.getElementById("quebra").value = resultado.toFixed(2);
 
-        // Formatar o resultado (este passo pode variar dependendo da sua lógica real)
-        let resultadoFormatado = resultado.toFixed(2); // Arredondando para duas casas decimais
-
-        // Definir o valor formatado no primeiro elemento HTML
-        document.getElementById('valorPorKg').value = resultadoFormatado;
-
-        // Definir o valor formatado no segundo elemento HTML
-        document.getElementById('valor2').value = resultadoFormatado;
-
-        // Incorporar a correção fornecida
-        document.getElementById("quebra").value = resultado;
-    } catch (error) {
-        // Tratar exceções
-        console.error("Erro:", error.message);
-        // Defina um valor padrão ou mensagem de erro nos elementos HTML se necessário
-        document.getElementById('valorPorKg').value = "Erro ao calcular";
-        document.getElementById('valor2').value = "Erro ao calcular";
+            // Optional: Display the result in kilograms
+            document.getElementById("resultadoSubtracao").innerText = "Resultado: " + resultado.toFixed(2) + " kg";
+        } else {
+            // Handle the case where the entered values are not valid numbers
+            document.getElementById("resultadoSubtracao").innerText = "Por favor, insira valores válidos.";
+        }
     }
-}
-
-
-    // Display the result in the element with id "resultadoTotal" if needed
-    // document.getElementById("resultadoTotal").innerText = "Valor total: " + resultado;
-}
 
         
         function exibirResultadoValorPorKg(resultado) {
     // Coloque o resultado no elemento "valorPorKg"
     document.getElementById('valorPorKg').value = resultado.toFixed(2);
 }
-
-function calcularDivisao() {
-    var st1 = parseFloat(document.getElementById('st1').value);
-    var pb1 = parseFloat(document.getElementById('pb1').value);
-
-    if (pb1 !== 0) {
-        var resultado1 = st1 / pb1;
-        var resultado1Formatado = resultado1.toFixed(2);
-
-        // Chame a função para exibir o resultado no elemento "valorPorKg"
-        exibirResultadoValorPorKg(resultado1);
-
-        // Exibir mensagem opcional
-        document.getElementById('resultado1').innerText = "O valor por kg é: " + resultado1Formatado;
-    } else {
-        document.getElementById('resultado1').innerText = "Impossível dividir por zero";
-    }
-}
-
-
     </script>
 
 </body>
