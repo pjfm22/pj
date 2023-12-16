@@ -1,4 +1,4 @@
-* DOTIPE html .
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -49,45 +49,45 @@
             cursor: pointer;
         }
 
- botão: paira {
-              cor de fundo: 45  a049;
+        button:hover {
+            background-color: #45a049;
         }
 
- Entrada {
-             largura :    calc(    -    );
-             acolchoamento:  8 Px;
-              dimensionamento de caixa:    Caixa  de fronteira;
- cor: #000; /* Adicionado para números em preto */
+        input {
+            width: calc(50% - 5px);
+            padding: 8px;
+            box-sizing: border-box;
+            color: #000; /* Adicionado para números em preto */
         }
 
- Seleccione {
-             largura :   100%; 
-            acolchoamento  :    Px;
-              dimensionamento de caixa:    Caixa  de fronteira;
+        select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
         }
-      </estilo>  
-cabeça
-corpo
- Lista de . "pesoOrigem">Peso Origem:</labeletiqueta
- Tipo de entrada= "texto" id="pesoOrigem"   /> 
+    </style>
+</head>
+<body>
+    <label for="pesoOrigem">Peso Origem:</label>
+    <input type="text" id="pesoOrigem" />
 
- Lista de . "pesoLiquido"Peso Líquido:</labeletiqueta
- Tipo de entrada= "texto" id="pesoLiquido"   /> 
+    <label for="pesoLiquido">Peso Líquido:</label>
+    <input type="text" id="pesoLiquido" />
 
-  * botão onclick=">Calcular Diferença de Peso</botão>  
+    <button onclick="calcularDiferencaPeso()">Calcular Diferença de Peso</button>
 
- <p id= "resultado"P
- <p id= "mensagem"* P:
+    <p id="resultado"></p>
+    <p id="mensagem"></p>
 
-      <! --  Âncora para diferenca.html   (inicialmente oculta)   --> 
- <um rebe= "diferenca.html" id="linkDiferenca" estilo="exibição: nenhuma;">Calcular o desconto</a>
+    <!-- Âncora para diferenca.html (inicialmente oculta) -->
+    <a href="diferenca.html" id="linkDiferenca" style="display: none;">Calcular o desconto</a>
 
-      <!-- Âncora para saldo.html   (inicialmente oculta)   --> 
- <um rebe= "saldo.html" id="linkSaldo" estilo="exibição: nenhuma;">Saldo Calcular</a>
+    <!-- Âncora para saldo.html (inicialmente oculta) -->
+    <a href="saldo.html" id="linkSaldo" style="display: none;">Calcular Saldo</a>
 
- (script) 
-  função cálculo  DiferencaPeso() {
- var pesoOrigem = parseFloat(Documento.getElementById("pesoOrigem").value.replace(",",  "").substituir(".",  "").substituir(" ",  ""));
+    <script>
+        function calcularDiferencaPeso() {
+            var pesoOrigem = parseFloat(document.getElementById("pesoOrigem").value.replace(",", "").replace(".", "").replace(" ", ""));
             var pesoLiquido = parseFloat(document.getElementById("pesoLiquido").value.replace(",", "").replace(".", "").replace(" ", ""));
 
             if (!isNaN(pesoOrigem) && !isNaN(pesoLiquido)) {
